@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto-DJ Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: #0a0b0f; color: #e2e8f0; font-family: 'Inter', sans-serif; }
+        .glass-panel { background: rgba(15, 17, 23, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 1rem; }
+    </style>
+</head>
+<body class="min-h-screen p-6">
+    <div class="max-w-4xl mx-auto space-y-6">
+        
+        <header class="flex items-center justify-between pb-4 border-b border-gray-800">
+            <div>
+                <h1 class="text-2xl font-bold text-white">Rupantar Auto-DJ</h1>
+                <p class="text-sm text-gray-500">24/7 Background Music Server</p>
+            </div>
+            <div id="statusBadge" class="px-4 py-1.5 rounded-full text-sm font-semibold bg-gray-800 text-gray-400 border border-gray-700">Offline</div>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Server Settings -->
+            <div class="glass-panel p-6 space-y-4">
+                <h2 class="font-semibold text-lg text-white">Broadcast Server</h2>
+                
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="text-xs text-gray-400">Host / IP</label>
+                        <input id="host" type="text" class="w-full mt-1 bg-gray-900 border border-gray-700 rounded-lg p-2 text-sm focus:border-green-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="text-xs text-gray-400">Port</label>
+                        <input id="port" type="number" value="8000" class="w-full mt-1 bg-gray-900 border border-gray-700 rounded-lg p-2 text-sm focus:border-green-500 outline-none">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="text-xs text-gray-400">Source User</label>
+                        <input id="user" type="text" value="source" class="w-full mt-1 bg-gray-900 border border-gray-700 rounded-lg p-2 text-sm focus:border-green-500 outline-none">
+                    </div>
+                    <div>
+                        <label class="text-xs text-gray-400">Password</label>
+                        <input id="password" type="password" class="w-full mt-1 bg-gray-900 border border-gray-700 rounded-lg p-2 text-sm focus:border-green-500 outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="text-xs text-gray-400">Mount Point</label>
+                    <input id="mount" type="text" value="/stream" class="w-full mt-1 bg-gray-900 border border-gray-700 rounded-lg p-2 text-sm focus:border-green-500 outline-none">
+                </div>
+
+                <div class="pt-4 flex gap-3">
+                    <button id="startBtn" class="flex-1 bg-green-500 text-gray-900 font-bold py-3 rounded-lg hover:bg-green-400 transition">Start 24/7 Loop</button>
+                    <button id="stopBtn" class="flex-1 bg-red-500 text-white font-bold py-3 rounded-lg hover:bg-red-400 transition hidden">Stop Broadcast</button>
+                </div>
+            </div>
+
+            <!-- Playlist Manager -->
+            <div class="glass-panel p-6 space-y-4">
+                <div class="flex justify-between items-center">
+                    <h2 class="font-semibold text-lg text-white">Cloud Playlist</h2>
+                    <button id="clearBtn" class="text-xs text-red-400 hover:text-red-300">Clear All</button>
+                </div>
+
+                <div class="border-2 border-dashed border-gray-700 rounded-lg p-6 text-center">
+                    <input type="file" id="fileInput" multiple accept=".mp3" class="hidden">
+                    <button id="uploadBtn" class="bg-gray-800 text-white px-4 py-2 rounded-lg text-sm border border-gray-700 hover:bg-gray-700 transition">Upload MP3 Files</button>
+                    <p id="uploadStatus" class="text-xs text-gray-500 mt-2">Upload tracks directly to the server</p>
+                </div>
+
+                <ul id="trackList" class="space-y-2 mt-4 max-h-48 overflow-y-auto pr-2 text-sm text-gray-300 font-mono">
+                    <!-- Tracks will load here -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>
