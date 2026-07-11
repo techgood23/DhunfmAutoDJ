@@ -82,10 +82,16 @@ app.post('/api/start', (req, res) => {
 
     ffmpegProcess = spawn('ffmpeg', args);
 
-    ffmpegProcess.on('close', () => {
-        ffmpegProcess = null;
-        console.log('FFmpeg stopped.');
-    });
+// Yeh nayi line FFmpeg ka real error print karegi
+ffmpegProcess.stderr.on('data', (data) => {
+    console.error(`FFmpeg Error: ${data}`);
+});
+
+ffmpegProcess.on('close', () => {
+    ffmpegProcess = null;
+    console.log('FFmpeg stopped.');
+});
+
 
     res.json({ message: 'Auto-DJ Started in background!' });
 });
