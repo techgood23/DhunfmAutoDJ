@@ -76,6 +76,7 @@ app.post('/api/start', (req, res) => {
         '-b:a', '128k',
         '-content_type', 'audio/mpeg',
         '-ice_name', 'Rupantar Music Auto-DJ',
+        '-legacy_icecast', '1',
         '-f', 'mp3',
         streamUrl
     ];
